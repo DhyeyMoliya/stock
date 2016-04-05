@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stock</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/datepicker3.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/jquery-2.2.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-cookies.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <script src="js/stockApp.js"></script>
+
+
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!--Icons-->
+    <script src="js/lumino.glyphs.js"></script>
+    <link href="css/font-awesome.css" rel="stylesheet" />
+
+</head>
+
+<body ng-app="stockApp">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/"><span>Stack</span></a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> User <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href=""><i class="fa fa-user"></i>  Profile</a></li>
+                            <li><a href=""><i class="fa fa-gear"></i> Settings</a></li>
+                            <li><a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+        </form>
+        <ul class="nav menu">
+            <li class="active"><a href="#/"><i class="fa fa-tachometer"></i> <span class="menu-item">Dashboard</span></a></li>
+            <li class="parent" id="products-menu">
+                <a>
+                    <span data-toggle="collapse" href="#products-sub-menu">
+                        <i class="fa fa-shopping-cart"></i> <span class="menu-item">Stocks</span>
+                    </span>
+                </a>
+                <ul class="children collapse" id="products-sub-menu">
+                    <li>
+                        <a href="#/products">
+                            <i class="fa fa-th-list"></i> <span class="menu-item">Product List & Stock</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#/addproduct">
+                            <i class="fa fa-cart-plus"></i> <span class="menu-item">Manage Products</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="parent" id="customers-menu">
+                <a>
+                    <span data-toggle="collapse" href="#customers-sub-menu">
+                        <i class="fa fa-users"></i><span class="menu-item">Customers</span>
+                    </span>
+                </a>
+                <ul class="children collapse" id="customers-sub-menu">
+                    <li>
+                        <a class="" href="#/customers">
+                            <i class="fa fa-th-list"></i> <span class="menu-item">Customer List</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#/managecustomers">
+                            <i class="fa fa-user-plus"></i> <span class="menu-item">Manage Customers</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="parent" id="orders-menu">
+                <a>
+                    <span data-toggle="collapse" href="#orders-sub-menu">
+                        <i class="fa fa-check-square-o"></i> <span class="menu-item">Orders</span>
+                    </span>
+                </a>
+                <ul class="children collapse" id="orders-sub-menu">
+                    <li>
+                        <a class="" href="#/orders">
+                            <i class="fa fa-cart-plus"></i> <span class="menu-item">Place New Order</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="" href="#/neworder">
+                            <i class="fa fa-check-square"></i> <span class="menu-item">Recent Orders</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!--
+
+                    <li><a href="/products"><i class="fa fa-cogs"></i> <span class="menu-item">Products</span></a></li>
+                 <li><a href="/addproduct"><i class="fa fa-line-chart"></i> <span class="menu-item">Add Product</span></a></li>
+                 <li><a href="tables.html"><i class="fa fa-table"></i> <span class="menu-item">Tables</span></a></li>
+                 <li><a href="forms.html"><i class="fa fa-pencil-square-o"></i> <span class="menu-item">Forms</span></a></li>
+                 <li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
+                 <li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
+
+                 <li role="presentation" class="divider"></li>
+                 <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
+
+            -->
+        </ul>
+
+    </div><!--/.sidebar-->
+
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+        <div ng-view></div>
+    </div>	<!--/.main-->
+
+    <script>
+        $('#calendar').datepicker({
+        });
+
+        !function ($) {
+            $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                $(this).find('em:first').toggleClass("glyphicon-minus");
+            });
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+        }(window.jQuery);
+
+        $(window).on('resize', function () {
+            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
+        })
+        $(window).on('resize', function () {
+            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+        })
+    </script>
+</body>
+
+</html>
