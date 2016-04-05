@@ -58,9 +58,8 @@ app.controller('loginController', function ($scope, $window, $rootScope, $cookie
         });
     };*/
 
-    $scope.login = function () {
+    $scope.login = function() {
 
-        $scope.user = { username: '', password: '' };
 
         if ($scope.user.username == "abc@abc.com" && $scope.user.password == "abc") {
             $cookieStore.put('isLoggedIn', true);

@@ -36,7 +36,7 @@ app.config(function ($routeProvider) {
         })
 
         .when('/addproduct', {
-            templateUrl: 'views/addproduct.html',
+            templateUrl: 'views/manageproducts.html',
             controller: 'productController'
         })
 
@@ -85,6 +85,7 @@ app.controller('dashboardController', function ($scope) {
 app.controller('productController', function ($scope, $rootScope, productService) {
     $scope.products = productService.query();
     $scope.notSelectedProduct = true;
+    $scope.notSelectedProductToRemove = true;
     
     $scope.newProduct = {
         created_by: '',
@@ -109,6 +110,13 @@ app.controller('productController', function ($scope, $rootScope, productService
         else
             $scope.notSelectedProduct = false;
     }
+
+    $scope.selectedProductToRemove = function (product) {
+        if ($('#removeProductSelector').val() == "")
+            $scope.notSelectedProductToRemove = true;
+        else
+            $scope.notSelectedProductToRemove = false;
+    }
        
     $scope.addProduct = function () {
         console.log('Debug Point: Add Product');
@@ -128,8 +136,20 @@ app.controller('productController', function ($scope, $rootScope, productService
     $scope.editProduct = function () {
         console.log('Debug Point: Edit Product');
         $id = $scope.editedProduct.id;
-        productService.update({ id: $id }, $scope.editedProduct, function() {
-            $scope.products = productService.query();            
+        productService.update({ id: $id }, $scope.editedProduct, function () {
+            $scope.products = productService.query();
+        });
+    };
+
+    $scope.removeProduct = function () {
+        console.log('Debug Point: Remove Product');
+
+        var index = $scope.products.indexOf($scope.productToRemove);
+        $scope.products.splice(index, 1);
+
+        $id = $scope.productToRemove.id;
+        productService.delete({ id: $id }, function () {
+            $scope.products = productService.query();
         });
     };
 
